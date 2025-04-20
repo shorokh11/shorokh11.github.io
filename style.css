@@ -2,7 +2,7 @@
 
 /* Общие стили */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family:  Tahoma, Verdana, sans-serif;
     background-color: #ffffff;
     color: #000000;
     line-height: 1.6;
@@ -74,6 +74,7 @@ main {
 /* Страницы проектов */
 .project-header {
     margin-bottom: 40px;
+
 }
 
 .project-description {
@@ -207,4 +208,19 @@ footer img {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transition: transform .6s ease-in-out;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+h3 {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.nav-link-header:hover,.nav-link-header:visited {
+    color: #000000;
+    text-decoration: none;
+    
 }
