@@ -3,20 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Обо мне</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="header.js" defer></script>
+    <script src="footer.js" defer></script>
 </head>
 <body>
-<div id="header-container"></div>
-    <main>
-        <section class="about">
-            <h2>Мое кредо</h2>
-            <p>Ваше кредо как дизайнера.</p>
-            <h2>О моих работах</h2>
-            <p>Описание ваших работ.</p>
-        </section>
+    <header id="header"></header>
+
+    <main class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <img src="profile-photo.jpg" alt="Фото профиля" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8">
+                <h2>Обо мне</h2>
+                <p class="lead">Графический дизайнер с опытом работы более 5 лет</p>
+                <p>Привет! Меня зовут Фамилия Имя, я графический дизайнер, специализирующийся на создании минималистичных и функциональных дизайнов для брендов и компаний.</p>
+                <p>Мой подход к дизайну основан на принципе "меньше значит больше". Я верю, что хороший дизайн должен быть не только красивым, но и функциональным, решающим конкретные задачи клиента.</p>
+                
+                <h3 class="mt-4">Навыки</h3>
+                <ul>
+                    <li>Брендинг и айдентика</li>
+                    <li>Веб-дизайн</li>
+                    <li>Полиграфический дизайн</li>
+                    <li>UI/UX дизайн</li>
+                    <li>Иллюстрация</li>
+                </ul>
+                
+                <h3 class="mt-4">Образование</h3>
+                <p>Высшее образование в области графического дизайна, Университет Дизайна, 2020 г.</p>
+                
+                <h3 class="mt-4">Опыт работы</h3>
+                <div class="mb-3">
+                    <h5>Старший дизайнер, Дизайн-студия "Креатив"</h5>
+                    <p class="text-muted">2022 - настоящее время</p>
+                    <p>Разработка брендинга и визуальной идентичности для клиентов из различных отраслей. Создание веб-дизайна и пользовательских интерфейсов.</p>
+                </div>
+                <div class="mb-3">
+                    <h5>Графический дизайнер, Агентство "Идея"</h5>
+                    <p class="text-muted">2020 - 2022</p>
+                    <p>Создание рекламных материалов, разработка логотипов и фирменного стиля для клиентов.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3>Мой подход к работе</h3>
+                <p>Каждый проект для меня - это возможность создать что-то уникальное и ценное. Я всегда начинаю с глубокого погружения в задачу клиента, изучения его бизнеса, целевой аудитории и конкурентов.</p>
+                <p>В своей работе я придерживаюсь следующих принципов:</p>
+                <ul>
+                    <li>Минимализм и функциональность</li>
+                    <li>Внимание к деталям</li>
+                    <li>Ориентация на пользователя</li>
+                    <li>Инновационный подход</li>
+                </ul>
+            </div>
+        </div>
     </main>
-<div id="footer-container"></div>
-    <script src="scripts.js"></script>
+
+    <footer id="footer"></footer>
+    <!-- Скрипты Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Скрипт для анимации -->
+    <script src="project-navigation.js"></script>
 </body>
 </html>

@@ -3,30 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Портфолио</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="header.js" defer></script>
+    <script src="footer.js" defer></script>
 </head>
 <body>
-<div id="header-container"></div>
-    <main>
-        <section class="projects-grid">
-            <!-- Пример проекта -->
-            <div class="project">
-                <a href="projects/project1.html">
-                    <img src="images/PORTFOLIO-01.png" alt="Проект 1">
-                    <p>Проект 1</p>
+    <header id="header"></header>
+
+    <main class="container mt-5 pt-5">
+        <p class="mb-4">Мои проекты</p>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <a href="project1.html" class="text-decoration-none">
+                    <div class="project-card">
+                        <img src="/images/dash_portfolio/1_Artboard 1 copy 30.png" alt="Проект 1" class="img-fluid">
+                        <h5 class="project-title">лого «ЭшДеш»</h5>
+                    </div>
                 </a>
             </div>
-            <div class="project">
-                <a href="projects/project2.html">
-                    <img src="projects/project2.jpg" alt="Проект 2">
-                    <p>Проект 2</p>
+            <div class="col-md-4 col-sm-6">
+                <a href="project2.html" class="text-decoration-none">
+                    <div class="project-card">
+                        <img src="/images/free_calendar_portfolio/1_Artboard 1 copy 32.png" alt="Проект 2" class="img-fluid">
+                        <h5 class="project-title">FREEкалендарь 2025</h5>
+                    </div>
                 </a>
             </div>
-            <!-- Добавьте больше проектов по необходимости -->
-        </section>
+            <div class="col-md-4 col-sm-6">
+                <a href="project3.html" class="text-decoration-none">
+                    <div class="project-card">
+                        <img src="/images/sungir_portfolio/1_Artboard 1 copy 31.png" alt="Проект 3" class="img-fluid">
+                        <h5 class="project-title">Сунгирская лошадка</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="project4.html" class="text-decoration-none">
+                    <div class="project-card">
+                        <img src="/images/altai_molochka_portfolio/Artboard 1 copy 33.png" alt="Проект 4" class="img-fluid">
+                        <h5 class="project-title">Упаковка Алтайской продукции</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="project5.html" class="text-decoration-none">
+                    <div class="project-card">
+                        <img src="/images/obertka_portfolio/1_Artboard 1 copy 35.png" alt="Проект 5" class="img-fluid">
+                        <h5 class="project-title">Бумага для упаковки</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="project6.html" class="text-decoration-none">
+                    <div class="project-card">
+                        <img src="/images/zifri_na_5_portfolio/1_Artboard 1 copy 34.png" alt="Проект 6" class="img-fluid">
+                        <h5 class="project-title">Цифры на 5</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
     </main>
-<div id="footer-container"></div>
-    <script src="scripts.js"></script>
+
+    <footer id="footer"></footer>
+    <!-- Скрипты Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Скрипт для анимации -->
+    <script src="project-navigation.js"></script>
 </body>
 </html>
