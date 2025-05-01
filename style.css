@@ -2,7 +2,7 @@
 
 /* Общие стили */
 body {
-    font-family:  Tahoma, Verdana, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #ffffff;
     color: #000000;
     line-height: 1.6;
@@ -15,8 +15,8 @@ body {
 }
 
 .header-container h1 {
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 400;
     letter-spacing: 1px;
 }
 
@@ -79,6 +79,23 @@ main {
 
 .project-description {
     margin-bottom: 40px;
+}
+.span-orange {
+    color: rgb(225, 81, 3);
+}
+.big-blue {
+    color: rgb(1, 133, 189);
+    font-size: 140%;
+}
+.span-blue{
+    color: rgb(1, 133, 189);
+}
+.span-purplе {
+    color: rgb(87, 51, 136);
+}
+.container {
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 /* Карусель */
@@ -188,7 +205,7 @@ footer img {
     }
     
     .header-container h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
     
     .carousel-item {
