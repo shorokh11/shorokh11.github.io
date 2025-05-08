@@ -197,6 +197,10 @@ footer img {
     .project-description {
         margin-bottom: 20px;
     }
+    .container {
+         padding-left: 1%;
+        padding-right: 1%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -210,6 +214,10 @@ footer img {
     
     .carousel-item {
         height: 200px;
+    }
+     .container {
+      padding-left: 2%;
+     padding-right: 2%;
     }
 }
 .img-fluid-carousel {
