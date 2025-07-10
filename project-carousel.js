@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'project6.html',
             title: 'Цифры на 5',
             image: '/images/zifri_na_5_portfolio/1_Artboard 1 copy 34.png'
+        },
+        {
+            id: 'project7.html',
+            title: 'Заметки радиозонда',
+            image: '/images/sungir_portfolio/1_Artboard 1 copy 31.png'
         }
     ];
     
