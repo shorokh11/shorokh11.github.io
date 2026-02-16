@@ -97,6 +97,9 @@ main {
     padding-left: 8%;
     padding-right: 8%;
 }
+.bg_black {
+    background-color: #000000;
+}
 
 /* Карусель */
 .carousel {

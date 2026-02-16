@@ -43,8 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 'project7.html',
             title: 'Заметки радиозонда',
+            image: 'images/book_radiozond/book_5.png'
+        },
+        {
+            id: 'project8.html',
+            title: 'Коллекция логотипов',
             image: '/images/sungir_portfolio/1_Artboard 1 copy 31.png'
-        }
+        },
     ];
     
     // Фильтруем проекты, исключая текущий
