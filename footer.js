@@ -6,43 +6,52 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-// Переключение выпадающего меню контактов по клику
-document.addEventListener('click', function (e) {
-    var dropdown = e.target.closest('.contact-dropdown');
-    if (!dropdown) {
-        // клик вне меню — закрыть все
-        document.querySelectorAll('.contact-dropdown.is-open')
-            .forEach(function (d) { d.classList.remove('is-open'); });
-        return;
-    }
-    var toggle = e.target.closest('.contact-dropdown__toggle');
-    if (toggle) {
-        e.preventDefault();
-        var isOpen = dropdown.classList.contains('is-open');
-        document.querySelectorAll('.contact-dropdown.is-open')
-            .forEach(function (d) { d.classList.remove('is-open'); });
-        if (!isOpen) {
-            dropdown.classList.add('is-open');
-            toggle.setAttribute('aria-expanded', 'true');
-        } else {
-            toggle.setAttribute('aria-expanded', 'false');
-        }
-    } else if (e.target.closest('.contact-dropdown__link')) {
-        // клик по пункту меню — закрыть меню
-        dropdown.classList.remove('is-open');
-        var t = dropdown.querySelector('.contact-dropdown__toggle');
-        if (t) t.setAttribute('aria-expanded', 'false');
-    }
-});
+// Копирование номера телефона в буфер обмена
+var copyTooltipTimer = null;
 
-// Закрытие меню клавишей Escape
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.contact-dropdown.is-open')
-            .forEach(function (d) {
-                d.classList.remove('is-open');
-                var t = d.querySelector('.contact-dropdown__toggle');
-                if (t) t.setAttribute('aria-expanded', 'false');
-            });
+function showCopyTooltip() {
+    var tooltip = document.getElementById('copy-phone-tooltip');
+    if (!tooltip) return;
+    tooltip.classList.add('is-show');
+    if (copyTooltipTimer) {
+        clearTimeout(copyTooltipTimer);
     }
+    copyTooltipTimer = setTimeout(function () {
+        tooltip.classList.remove('is-show');
+    }, 2500);
+}
+
+function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+    // Фолбэк для старых браузеров / не-HTTPS
+    return new Promise(function (resolve, reject) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+            document.execCommand('copy');
+            resolve();
+        } catch (err) {
+            reject(err);
+        }
+        document.body.removeChild(ta);
+    });
+}
+
+document.addEventListener('click', function (e) {
+    var btn = e.target.closest('#copy-phone-btn');
+    if (!btn) return;
+    e.preventDefault();
+    var phone = btn.getAttribute('data-phone') || '';
+    copyToClipboard(phone).then(showCopyTooltip, function () {
+        // Даже при ошибке показываем подсказку — номер видно, можно скопировать вручную
+        showCopyTooltip();
+    });
 });

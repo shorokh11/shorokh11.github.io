@@ -51,11 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             image: '/images/150 akademia/150 akad-01.png'
         },
         {
-            id: 'project3.html',
-            title: 'Сунгирская лошадка',
-            image: '/images/sungir_portfolio/1_Artboard 1 copy 31.png'
-        },
-        {
             id: 'project4.html',
             title: 'Упаковка Алтайской продукции',
             image: '/images/altai_molochka_portfolio/Artboard 1 copy 33.png'

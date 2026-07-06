@@ -3,24 +3,12 @@
         <div class="text-center py-4">
             <p class="mb-3">Связаться со мной:</p>
             <div class="social-links">
-                <div class="contact-dropdown">
-                    <button type="button" class="contact-dropdown__toggle mx-2" aria-haspopup="true" aria-expanded="false" aria-label="Телефон">
-                        <img src="images/phone.svg" alt="Телефон" class="social-icon" />
-                    </button>
-                    <ul class="contact-dropdown__menu">
-                        <li>
-                            <a href="tel:+79620928984" class="contact-dropdown__link">
-                                <span class="contact-dropdown__title">Позвонить</span>
-                                <span class="contact-dropdown__desc">+7 962 092-89-84</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://t.me/Shorokh_D" target="_blank" class="contact-dropdown__link contact-dropdown__link--tg">
-                                <span class="contact-dropdown__title">Написать в Telegram</span>
-                                <span class="contact-dropdown__desc">@Shorokh_D</span>
-                            </a>
-                        </li>
-                    </ul>
+                <button type="button" id="copy-phone-btn" class="copy-phone mx-2" data-phone="+79620928984" aria-label="Скопировать номер телефона">
+                    <img src="images/phone.svg" alt="Телефон" class="social-icon" />
+                </button>
+                <div id="copy-phone-tooltip" class="copy-phone__tooltip" role="status" aria-live="polite">
+                    <span class="copy-phone__tooltip-title">Номер скопирован</span>
+                    <span class="copy-phone__tooltip-desc">+7 962 092-89-84</span>
                 </div>
                 <a href="https://t.me/Shorokh_D" target="_blank" class="mx-2">
                     <img src="images/telegram-icon.png" alt="Telegram" class="social-icon" />
