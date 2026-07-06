@@ -283,3 +283,41 @@ h3 {
     }
 }
 
+.contact-phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.contact-phone__label {
+    font-weight: 600;
+}
+
+.contact-phone__list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.contact-phone__link {
+    color: #000;
+    text-decoration: none;
+}
+
+.contact-phone__link:hover {
+    text-decoration: underline;
+}
+
+.contact-phone__link--tg {
+    color: #2aabee;
+    border-bottom: 1px dashed #2aabee;
+}
+
+.contact-phone__link--tg:hover {
+    text-decoration: none;
+    border-bottom-style: solid;
+}
+
