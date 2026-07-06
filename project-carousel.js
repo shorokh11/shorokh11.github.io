@@ -11,14 +11,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Данные о проектах
     const projects = [
         {
+            id: 'project13.html',
+            title: 'Айдентика фестиваля фридайвинга',
+            image: 'images/into30 portfolio/Artboard 1 copy 2hg.png'
+        },
+        {
             id: 'project1.html',
             title: 'Лого «ЭшДеш»',
             image: '/images/dash_portfolio/1_Artboard 1 copy 30.png'
         },
+         {
+            id: 'project7.html',
+            title: 'Заметки радиозонда',
+            image: 'images/book_radiozond/book_5.png'
+        },
         {
+            id: 'project8.html',
+            title: 'Буклет TwinCoffee',
+            image: 'images/twin coffee/twin coffee olozka.png'
+        },
+         {
             id: 'project2.html',
             title: 'FREEкалендарь 2025',
             image: '/images/free_calendar_portfolio/1_Artboard 1 copy 32.png'
+        },
+        {
+            id: 'project11.html',
+            title: 'SHOR шрифт',
+            image: 'images/SHORfont/Shor font-01.png'
+        },
+        {
+            id: 'project9.html',
+            title: 'Упковка кассеты «КИНО»',
+            image: 'images/kino kaseta/shor kino kaseta-01.png'
+        },
+        {
+            id: 'project10.html',
+            title: '150-летие Академии им. А.Л.Штиглица',
+            image: '/images/150 akademia/150 akad-01.png'
         },
         {
             id: 'project3.html',
@@ -40,15 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Цифры на 5',
             image: '/images/zifri_na_5_portfolio/1_Artboard 1 copy 34.png'
         },
-        {
-            id: 'project7.html',
-            title: 'Заметки радиозонда',
-            image: 'images/book_radiozond/book_5.png'
-        },
-        {
-            id: 'project8.html',
-            title: 'Коллекция логотипов',
-            image: '/images/sungir_portfolio/1_Artboard 1 copy 31.png'
+         {
+            id: 'project12.html',
+            title: '80-я годовщина Ленинградской школы реставрации',
+            image: 'images/infogr Vaganova/infogr vaganova-06.png'
         },
     ];
     
