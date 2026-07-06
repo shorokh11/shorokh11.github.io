@@ -340,4 +340,119 @@ h3 {
     opacity: 0.85;
 }
 
+/* Контакты внутри бургер-меню */
+.nav-contacts {
+    position: relative;
+}
+
+.nav-contacts__toggle {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+
+.nav-contacts__toggle:hover,
+.nav-contacts__toggle:focus {
+    color: #2aabee;
+}
+
+.nav-contacts__toggle::after {
+    content: "▾";
+    margin-left: 0.4rem;
+    font-size: 0.75em;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.nav-contacts.is-open .nav-contacts__toggle::after {
+    transform: rotate(180deg);
+}
+
+.nav-contacts__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    padding-left: 1rem;
+}
+
+.nav-contacts.is-open .nav-contacts__panel {
+    max-height: 600px;
+}
+
+.nav-contacts__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    background: none;
+    border: none;
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+.nav-contacts__item:hover {
+    background-color: #f6f6f6;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-contacts__icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.nav-contacts__title {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.nav-contacts__desc {
+    font-size: 0.85rem;
+    color: #666;
+    margin-left: auto;
+}
+
+/* Выравнивание бургер-меню по правой стороне после раскрытия */
+.navbar {
+    margin-left: auto;
+}
+
+#navbarNav {
+    text-align: right;
+}
+
+.navbar-nav {
+    margin-left: auto !important;
+}
+
+.navbar-nav .nav-item {
+    text-align: right;
+}
+
+.navbar-toggler {
+    margin-left: auto;
+}
+
+.nav-contacts__toggle {
+    text-align: right !important;
+}
+
+.nav-contacts__item {
+    justify-content: flex-end;
+}
+
 
