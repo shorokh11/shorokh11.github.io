@@ -3,8 +3,31 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('header').innerHTML = data;
+            initBurgerToggle();
         });
 });
+
+// Раскрытие бургер-меню (независимо от Bootstrap JS)
+function initBurgerToggle() {
+    var toggler = document.querySelector('.navbar-toggler');
+    var nav = document.getElementById('navbarNav');
+    if (!toggler || !nav) return;
+
+    toggler.addEventListener('click', function () {
+        var isOpen = nav.classList.toggle('navbar-collapse-open');
+        toggler.setAttribute('aria-expanded', String(isOpen));
+        nav.classList.toggle('show', isOpen);
+    });
+
+    // Закрытие при переходе по ссылке внутри меню (для мобильных)
+    nav.addEventListener('click', function (e) {
+        var link = e.target.closest('.nav-link[href]');
+        if (link && nav.classList.contains('navbar-collapse-open')) {
+            nav.classList.remove('navbar-collapse-open', 'show');
+            toggler.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
 
 // Раскрытие панели «Контакты» внутри бургер-меню
 document.addEventListener('click', function (e) {
@@ -15,7 +38,6 @@ document.addEventListener('click', function (e) {
         var isOpen = nav.classList.contains('is-open');
         nav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', String(!isOpen));
-        return;
     }
 });
 

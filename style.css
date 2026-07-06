@@ -293,6 +293,11 @@ h3 {
     transition: background-color 0.2s ease;
 }
 
+.copy-phone-wrap {
+    position: relative;
+    display: inline-block;
+}
+
 .copy-phone:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
@@ -445,6 +450,7 @@ h3 {
 
 .navbar-toggler {
     margin-left: auto;
+    margin-right: 0.75rem;
 }
 
 .nav-contacts__toggle {
