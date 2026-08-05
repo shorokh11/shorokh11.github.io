@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
             image: 'images/into30 portfolio/Artboard 1 copy 2hg.png'
         },
         {
+            id: 'project14.html',
+            title: 'Фирменный стиль «Системный подход»',
+            image: 'images/Syspod portfolio/Frame 1.png'
+        },
+        {
             id: 'project1.html',
             title: 'Лого «ЭшДеш»',
             image: '/images/dash_portfolio/1_Artboard 1 copy 30.png'
