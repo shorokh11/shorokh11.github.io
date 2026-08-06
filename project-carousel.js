@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 'project14.html',
-            title: 'Фирменный стиль «Системный подход»',
+            title: 'Ребрендинг компании «Системный подход»',
             image: 'images/Syspod portfolio/Frame 1.png'
         },
         {
