@@ -65,11 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Бумага для упаковки',
             image: '/images/obertka_portfolio/1_Artboard 1 copy 35.png'
         },
-        {
+       /*  {
             id: 'project6.html',
             title: 'Цифры на 5',
             image: '/images/zifri_na_5_portfolio/1_Artboard 1 copy 34.png'
-        },
+        }, */
          {
             id: 'project12.html',
             title: '80-я годовщина Ленинградской школы реставрации',
