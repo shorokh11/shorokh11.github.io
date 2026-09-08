@@ -68,6 +68,12 @@ main {
     }
 }
 
+@media (max-width: 575.98px) {
+    .project-card .project-title {
+        font-size: 1rem;
+    }
+}
+
 /* Страницы проектов */
 .project-header {
     margin-bottom: 40px;
