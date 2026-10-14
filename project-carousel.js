@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 'project9.html',
-            title: 'Упковка кассеты «КИНО»',
+            title: 'Упаковка кассеты «КИНО»',
             image: 'images/kino kaseta/shor kino kaseta-01.png'
         },
         {

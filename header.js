@@ -1,48 +1,88 @@
-document.addEventListener("DOMContentLoaded", function() {
+// Шапка подгружается из header.html на каждой странице.
+// Меню работает само по себе и не зависит от версии Bootstrap.
+document.addEventListener("DOMContentLoaded", function () {
     fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
+        .then(function (response) { return response.text(); })
+        .then(function (data) {
             document.getElementById('header').innerHTML = data;
-            initBurgerToggle();
+            markCurrentPage();
+            initHeader();
         });
 });
 
-// Раскрытие бургер-меню (независимо от Bootstrap JS)
-function initBurgerToggle() {
-    var toggler = document.querySelector('.navbar-toggler');
-    var nav = document.getElementById('navbarNav');
-    if (!toggler || !nav) return;
-
-    toggler.addEventListener('click', function () {
-        var isOpen = nav.classList.toggle('navbar-collapse-open');
-        toggler.setAttribute('aria-expanded', String(isOpen));
-        nav.classList.toggle('show', isOpen);
-    });
-
-    // Закрытие при переходе по ссылке внутри меню (для мобильных)
-    nav.addEventListener('click', function (e) {
-        var link = e.target.closest('.nav-link[href]');
-        if (link && nav.classList.contains('navbar-collapse-open')) {
-            nav.classList.remove('navbar-collapse-open', 'show');
-            toggler.setAttribute('aria-expanded', 'false');
+function markCurrentPage() {
+    var page = window.location.pathname.split('/').pop() || 'index.html';
+    var isProject = /^project/.test(page);
+    document.querySelectorAll('.site-nav__link[href]').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (href === page || (isProject && href === 'index.html')) {
+            link.classList.add('is-current');
         }
     });
 }
 
-// Раскрытие панели «Контакты» внутри бургер-меню
-document.addEventListener('click', function (e) {
-    var toggle = e.target.closest('#navContactsToggle');
-    if (toggle) {
-        var nav = toggle.closest('.nav-contacts');
-        if (!nav) return;
-        var isOpen = nav.classList.contains('is-open');
-        nav.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', String(!isOpen));
-    }
-});
+function initHeader() {
+    var burger = document.getElementById('siteBurger');
+    var nav = document.getElementById('siteNav');
+    var contacts = document.querySelector('.nav-contacts');
+    var contactsToggle = document.getElementById('navContactsToggle');
+    if (!burger || !nav) return;
 
-// Копирование номера из бургер-меню
-function copyToClipboard(text) {
+    function setMenu(open) {
+        nav.classList.toggle('is-open', open);
+        burger.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+        if (!open) setContacts(false);
+    }
+
+    function setContacts(open) {
+        if (!contacts || !contactsToggle) return;
+        contacts.classList.toggle('is-open', open);
+        contactsToggle.setAttribute('aria-expanded', String(open));
+    }
+
+    burger.addEventListener('click', function () {
+        setMenu(!nav.classList.contains('is-open'));
+    });
+
+    if (contactsToggle) {
+        contactsToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            setContacts(!contacts.classList.contains('is-open'));
+        });
+    }
+
+    // Клик мимо шапки закрывает меню и контакты
+    document.addEventListener('click', function (e) {
+        if (e.target.closest('.site-header')) return;
+        setMenu(false);
+        setContacts(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            setMenu(false);
+            setContacts(false);
+        }
+    });
+
+    // При переходе на десктопную ширину мобильное меню сбрасывается
+    window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) setMenu(false);
+    });
+
+    var copyBtn = document.getElementById('navCopyPhoneBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            var phone = copyBtn.getAttribute('data-phone') || '';
+            copyText(phone).then(function () { flashCopiedTitle(copyBtn); });
+        });
+    }
+}
+
+function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) {
         return navigator.clipboard.writeText(text);
     }
@@ -51,9 +91,7 @@ function copyToClipboard(text) {
         ta.value = text;
         ta.style.position = 'fixed';
         ta.style.top = '-9999px';
-        ta.style.left = '-9999px';
         document.body.appendChild(ta);
-        ta.focus();
         ta.select();
         try {
             document.execCommand('copy');
@@ -69,20 +107,10 @@ function flashCopiedTitle(btn) {
     var title = btn.querySelector('.nav-contacts__title');
     if (!title) return;
     var prev = title.textContent;
-    title.textContent = 'Скопировано!';
-    title.style.color = '#2aabee';
+    title.textContent = 'Скопировано';
+    btn.classList.add('is-copied');
     setTimeout(function () {
         title.textContent = prev;
-        title.style.color = '';
+        btn.classList.remove('is-copied');
     }, 1800);
 }
-
-document.addEventListener('click', function (e) {
-    var btn = e.target.closest('#navCopyPhoneBtn');
-    if (!btn) return;
-    e.preventDefault();
-    var phone = btn.getAttribute('data-phone') || '';
-    copyToClipboard(phone).then(function () {
-        flashCopiedTitle(btn);
-    });
-});

@@ -1,55 +1,48 @@
-<div class="header-container fixed-top bg-white">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center py-3">
-            <h1 class="text-dark m-0"><a class="nav-link-header" href="index.html">ШОРИКОВА ДАРЬЯ</a></h1>
-            <nav class="navbar navbar-expand-lg navbar-light p-0">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Главная</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">Обо мне</a>
-                        </li>
-                        <li class="nav-item nav-contacts">
-                            <button type="button" class="nav-link nav-contacts__toggle" id="navContactsToggle" aria-expanded="false">Контакты</button>
-                            <div class="nav-contacts__panel" id="navContactsPanel">
-                                <div class="nav-contacts__row">
-                                    <button type="button" class="nav-contacts__item" id="navCopyPhoneBtn" data-phone="+79620928984">
-                                        <img src="images/phone.svg" alt="Телефон" class="nav-contacts__icon" />
-                                        <span class="nav-contacts__title">Скопировать номер</span>
-                                        <span class="nav-contacts__desc">+7 962 092-89-84</span>
-                                    </button>
-                                </div>
-                                <div class="nav-contacts__row">
-                                    <a href="https://t.me/Shorokh_D" target="_blank" class="nav-contacts__item">
-                                        <img src="/images/telegram-icon.png" alt="Telegram" class="nav-contacts__icon" />
-                                        <span class="nav-contacts__title">Telegram</span>
-                                        <span class="nav-contacts__desc">@Shorokh_D</span>
-                                    </a>
-                                </div>
-                                <div class="nav-contacts__row">
-                                    <a href="https://instagram.com/shorikova_art" target="_blank" class="nav-contacts__item">
-                                        <img src="/images/instagram-icon.png" alt="Instagram" class="nav-contacts__icon" />
-                                        <span class="nav-contacts__title">Instagram</span>
-                                        <span class="nav-contacts__desc">@shorikova_art</span>
-                                    </a>
-                                </div>
-                                <div class="nav-contacts__row">
-                                    <a href="mailto:shorikova.d11@gmail.com" class="nav-contacts__item">
-                                        <img src="/images/email-icon.png" alt="Email" class="nav-contacts__icon" />
-                                        <span class="nav-contacts__title">Email</span>
-                                        <span class="nav-contacts__desc">shorikova.d11@gmail.com</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+<div class="site-header">
+    <div class="container site-header__inner">
+        <a class="site-header__logo" href="index.html">Шорикова Дарья</a>
+
+        <button type="button" class="site-header__burger" id="siteBurger" aria-controls="siteNav" aria-expanded="false" aria-label="Открыть меню">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="Основное меню">
+            <a class="site-nav__link" href="index.html">Работы</a>
+            <a class="site-nav__link" href="about.html">Обо мне</a>
+
+            <div class="nav-contacts">
+                <button type="button" class="site-nav__link nav-contacts__toggle" id="navContactsToggle" aria-expanded="false" aria-controls="navContactsPanel">Контакты</button>
+                <div class="nav-contacts__panel" id="navContactsPanel">
+                    <button type="button" class="nav-contacts__item" id="navCopyPhoneBtn" data-phone="+79620928984">
+                        <img src="images/phone.svg" alt="" class="nav-contacts__icon">
+                        <span class="nav-contacts__text">
+                            <span class="nav-contacts__title">Скопировать номер</span>
+                            <span class="nav-contacts__desc">+7 962 092-89-84</span>
+                        </span>
+                    </button>
+                    <a href="https://t.me/Shorokh_D" target="_blank" rel="noopener" class="nav-contacts__item">
+                        <img src="images/telegram-icon.png" alt="" class="nav-contacts__icon">
+                        <span class="nav-contacts__text">
+                            <span class="nav-contacts__title">Telegram</span>
+                            <span class="nav-contacts__desc">@Shorokh_D</span>
+                        </span>
+                    </a>
+                    <a href="https://instagram.com/shorikova_art" target="_blank" rel="noopener" class="nav-contacts__item">
+                        <img src="images/instagram-icon.png" alt="" class="nav-contacts__icon">
+                        <span class="nav-contacts__text">
+                            <span class="nav-contacts__title">Instagram</span>
+                            <span class="nav-contacts__desc">@shorikova_art</span>
+                        </span>
+                    </a>
+                    <a href="mailto:shorikova.d11@gmail.com" class="nav-contacts__item">
+                        <img src="images/email-icon.png" alt="" class="nav-contacts__icon">
+                        <span class="nav-contacts__text">
+                            <span class="nav-contacts__title">Email</span>
+                            <span class="nav-contacts__desc">shorikova.d11@gmail.com</span>
+                        </span>
+                    </a>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </div>
 </div>
