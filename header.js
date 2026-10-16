@@ -1,7 +1,7 @@
 // Шапка подгружается из header.html на каждой странице.
 // Меню работает само по себе и не зависит от версии Bootstrap.
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('header.html')
+    fetch('header.html', { cache: 'no-cache' })
         .then(function (response) { return response.text(); })
         .then(function (data) {
             document.getElementById('header').innerHTML = data;

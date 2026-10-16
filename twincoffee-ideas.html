@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css?v=20261014">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700;800&family=Oswald:wght@500;600;700&family=Caveat&display=swap">
+    <title>TwinCoffee: продолжение айдентики</title>
+    <script src="header.js?v=20261014" defer></script>
+    <script src="footer.js?v=20261014" defer></script>
+    <style>
+        /* Страница идей TwinCoffee. Стили живут здесь, чтобы не трогать style.css */
+        .tc-eyebrow {
+            margin-bottom: 12px;
+            font-size: 0.875rem;
+            color: var(--color-muted);
+            letter-spacing: 0.02em;
+        }
+        .tc-lead {
+            max-width: 760px;
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.55;
+        }
+        .tc-section {
+            padding: 48px 0 8px;
+            border-top: 1px solid var(--color-line);
+        }
+        .tc-section__title {
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+        }
+        .tc-section__intro {
+            max-width: 760px;
+            margin-bottom: 32px;
+            color: #4a4a4a;
+        }
+        .tc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 56px 32px;
+            margin-bottom: 56px;
+        }
+        .tc-frame--wide {
+            grid-column: 1 / -1;
+        }
+        .tc-frame__mock {
+            background: #050404;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+        .tc-frame__mock svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .tc-frame:hover .tc-frame__mock {
+            transform: scale(1.01);
+        }
+        .tc-frame__body {
+            padding-top: 18px;
+            max-width: 760px;
+        }
+        .tc-frame--wide .tc-frame__body {
+            max-width: none;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            column-gap: 32px;
+        }
+        .tc-frame--wide .tc-frame__head,
+        .tc-frame--wide .tc-frame__title {
+            grid-column: 1 / -1;
+        }
+        .tc-frame__head {
+            display: flex;
+            gap: 16px;
+            align-items: baseline;
+            margin-bottom: 4px;
+            font-size: 0.875rem;
+            color: var(--color-muted);
+        }
+        .tc-frame__num {
+            color: #dc2430;
+            font-weight: 500;
+        }
+        .tc-frame__title {
+            margin-bottom: 10px;
+            font-size: 1.125rem;
+        }
+        .tc-frame__body p {
+            color: #4a4a4a;
+        }
+        .tc-frame__meta {
+            margin: 0;
+        }
+        .tc-frame__meta div {
+            padding: 10px 0;
+            border-top: 1px solid var(--color-line);
+        }
+        .tc-frame__meta dt {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--color-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .tc-frame__meta dd {
+            margin: 2px 0 0;
+            font-size: 0.9375rem;
+        }
+        .tc-system {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+        .tc-swatches {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0;
+        }
+        .tc-swatch {
+            aspect-ratio: 3 / 4;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            line-height: 1.3;
+        }
+        .tc-type {
+            background: #050404;
+            color: #fff;
+            padding: 24px;
+        }
+        .tc-type__logo {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 800;
+            font-size: 2.75rem;
+            line-height: 1;
+        }
+        .tc-type__logo span {
+            display: block;
+            padding-left: 1.4em;
+        }
+        .tc-type__cond {
+            margin-top: 18px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .tc-type__note {
+            margin-top: 8px;
+            font-size: 0.8125rem;
+            color: #9b8f88;
+        }
+        .tc-elements {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .tc-element svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .tc-element p {
+            margin: 8px 0 0;
+            font-size: 0.875rem;
+            color: #4a4a4a;
+        }
+        .tc-steps {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 48px;
+            max-width: 760px;
+        }
+        .tc-steps li {
+            counter-increment: step;
+            position: relative;
+            padding: 0 0 20px 48px;
+        }
+        .tc-steps li::before {
+            content: counter(step, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.875rem;
+            color: var(--color-muted);
+        }
+        @media (max-width: 767.98px) {
+            .tc-grid,
+            .tc-system {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .tc-frame--wide .tc-frame__body {
+                display: block;
+            }
+            .tc-elements {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .tc-lead {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+    
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="tc-chevron" width="20" height="24" patternUnits="userSpaceOnUse">
+      <rect width="20" height="24" fill="#f2eee8"/>
+      <path d="M0 0 L10 8 L20 0 V12 L10 20 L0 12 Z" fill="#111"/>
+    </pattern>
+    <pattern id="tc-chevron-big" width="44" height="52" patternUnits="userSpaceOnUse">
+      <rect width="44" height="52" fill="#f2eee8"/>
+      <path d="M0 0 L22 18 L44 0 V26 L22 44 L0 26 Z" fill="#111"/>
+    </pattern>
+    <pattern id="tc-stripes" width="7" height="10" patternUnits="userSpaceOnUse">
+      <rect width="7" height="10" fill="#f6f3ee"/>
+      <rect width="2.4" height="10" fill="#5b5b5b"/>
+    </pattern>
+    <pattern id="tc-stripes-dark" width="7" height="10" patternUnits="userSpaceOnUse">
+      <rect width="7" height="10" fill="#111"/>
+      <rect width="2" height="10" fill="#dc2430"/>
+    </pattern>
+    <linearGradient id="tc-fold" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#4a070c"/>
+      <stop offset=".45" stop-color="#b8141d"/>
+      <stop offset=".55" stop-color="#e3333c"/>
+      <stop offset="1" stop-color="#4a070c"/>
+    </linearGradient>
+    <pattern id="tc-curtain" width="30" height="10" patternUnits="userSpaceOnUse">
+      <rect width="30" height="10" fill="url(#tc-fold)"/>
+    </pattern>
+    <linearGradient id="tc-night" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#070909"/>
+      <stop offset="1" stop-color="#1c1011"/>
+    </linearGradient>
+    <linearGradient id="tc-fade" x1="0" x2="0" y1="0" y2="1">
+      <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".85" stop-color="#fff" stop-opacity=".45"/>
+    </linearGradient>
+    <mask id="tc-reflect"><rect x="0" y="0" width="800" height="520" fill="url(#tc-fade)"/></mask>
+    <filter id="tc-blurX" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="22 3"/></filter>
+    <filter id="tc-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="tc-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+</svg>
+
+    <main class="container mt-5 pt-5">
+        <div class="project-header">
+            <p class="tc-eyebrow">Концепция · продолжение проекта <a href="project8.html">Буклет TwinCoffee</a></p>
+            <h2>TwinCoffee: одна кофейня, две реальности</h2>
+            <p class="tc-lead">Буклет и плакат задали язык: красная диагональ, размытое движение и конденсированный шрифт. Здесь этот язык переносится на дрипы, упаковку и всё, к чему гость прикасается в кофейне.</p>
+        </div>
+
+        <div class="project-description">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Задача</h3>
+                    <p>Продолжить айдентику кофейни: сделать дрип-пакеты и упаковку для них, предложить другие носители с отсылками к сериалу «Твин Пикс».</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Решение</h3>
+                    <p>Каждый носитель живёт в двух мирах. «Здесь» — плакат с красной диагональю и полосатым фарфором. «Там» — Красная комната: зигзаг пола, занавес, зеркальный текст. Отсылки прочитает фанат сериала, а остальным гостям вещи понятны и без него.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="tc-section">
+            <p class="tc-section__title">Основа — дрип-кофе</p>
+            <p class="tc-section__intro">Дрипы уже названы в буклете — Гватемала, Руанда и Коста-Рика, — и формат пакета 9,5 × 11,5 см задан там же. Упаковка продолжает буклет, а не начинает новую историю.</p>
+            <div class="tc-grid">
+        <article class="tc-frame tc-frame--wide">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 1200 600" role="img" aria-label="Мокап: три дрип-пакета и оборот">
+  <rect width="1200" height="600" fill="#050404"/>
+  
+    <g opacity="0.35" transform="rotate(-22 600.0 300.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-360.0" y="48.0" width="1920.0" height="42.00000000000001" fill="#7a3417"/>
+        <rect x="-360.0" y="132.0" width="1920.0" height="18.0" fill="#c99080" opacity=".7"/>
+        <rect x="-360.0" y="216.0" width="1920.0" height="30.0" fill="#4a1a12"/>
+        <rect x="-360.0" y="372.0" width="1920.0" height="24.0" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-360.0" y="480.0" width="1920.0" height="12.0" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+  <rect x="0" y="500" width="1200" height="100" fill="url(#tc-chevron-big)" opacity=".9"/>
+  <rect x="0" y="500" width="1200" height="100" fill="#000" opacity=".6"/>
+  
+  <g transform="translate(70 140) rotate(-4 110.0 150.0)">
+    <ellipse cx="110.0" cy="326" rx="105.6" ry="10" fill="#000" opacity=".6" filter="url(#tc-soft)"/>
+    <clipPath id="tc-sachet-1"><path d="M0 6 L0 6 L5.0 0 L10.0 6 L15.0 0 L20.0 6 L25.0 0 L30.0 6 L35.0 0 L40.0 6 L45.0 0 L50.0 6 L55.0 0 L60.0 6 L65.0 0 L70.0 6 L75.0 0 L80.0 6 L85.0 0 L90.0 6 L95.0 0 L100.0 6 L105.0 0 L110.0 6 L115.0 0 L120.0 6 L125.0 0 L130.0 6 L135.0 0 L140.0 6 L145.0 0 L150.0 6 L155.0 0 L160.0 6 L165.0 0 L170.0 6 L175.0 0 L180.0 6 L185.0 0 L190.0 6 L195.0 0 L200.0 6 L205.0 0 L210.0 6 L215.0 0 L220.0 6 L220 300 L0 300 Z"/></clipPath>
+    <g clip-path="url(#tc-sachet-1)">
+      
+      <rect x="0" y="0" width="220" height="300" fill="#0c0808"/>
+      
+    <g opacity="1.0" transform="rotate(-22 110.0 150.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-66.0" y="24.0" width="352.0" height="21.000000000000004" fill="#7a3417"/>
+        <rect x="-66.0" y="66.0" width="352.0" height="9.0" fill="#c99080" opacity=".7"/>
+        <rect x="-66.0" y="108.0" width="352.0" height="15.0" fill="#4a1a12"/>
+        <rect x="-66.0" y="186.0" width="352.0" height="12.0" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-66.0" y="240.0" width="352.0" height="6.0" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+      <polygon points="122,0 190,0 92,300 24,300" fill="#dc2430"/>
+      <g transform="rotate(20 110 110)">
+        <text x="40" y="96" font-family="'Golos Text', sans-serif" font-weight="800" font-size="38" fill="#fff">twin</text>
+        <text x="80" y="128" font-family="'Golos Text', sans-serif" font-weight="800" font-size="38" fill="#fff">coffee</text>
+      </g>
+      <text x="20" y="190" font-family="'Oswald', sans-serif" font-weight="500" font-size="13" fill="#fff" letter-spacing=".04em">ГВАТЕМАЛА</text>
+      <text x="20" y="214" font-family="'Oswald', sans-serif" font-weight="700" font-size="22" fill="#fff">ЛА КАБАНА</text>
+      <text x="20" y="232" font-family="'Golos Text', sans-serif" font-size="9" fill="#fff" opacity=".9">вишня / грейпфрут / красный вермут</text>
+      <text x="202" y="252" font-family="'Golos Text', sans-serif" font-size="8" fill="#fff" opacity=".7" text-anchor="end">бурбон · 12 г</text>
+      <rect x="0" y="264" width="220" height="36" fill="url(#tc-chevron)"/>
+      <line x1="0" y1="30" x2="220" y2="30" stroke="#fff" stroke-opacity=".45" stroke-dasharray="3 4"/>
+    </g>
+  </g>
+  
+  <g transform="translate(345 110) rotate(2 110.0 150.0)">
+    <ellipse cx="110.0" cy="326" rx="105.6" ry="10" fill="#000" opacity=".6" filter="url(#tc-soft)"/>
+    <clipPath id="tc-sachet-2"><path d="M0 6 L0 6 L5.0 0 L10.0 6 L15.0 0 L20.0 6 L25.0 0 L30.0 6 L35.0 0 L40.0 6 L45.0 0 L50.0 6 L55.0 0 L60.0 6 L65.0 0 L70.0 6 L75.0 0 L80.0 6 L85.0 0 L90.0 6 L95.0 0 L100.0 6 L105.0 0 L110.0 6 L115.0 0 L120.0 6 L125.0 0 L130.0 6 L135.0 0 L140.0 6 L145.0 0 L150.0 6 L155.0 0 L160.0 6 L165.0 0 L170.0 6 L175.0 0 L180.0 6 L185.0 0 L190.0 6 L195.0 0 L200.0 6 L205.0 0 L210.0 6 L215.0 0 L220.0 6 L220 300 L0 300 Z"/></clipPath>
+    <g clip-path="url(#tc-sachet-2)">
+      
+      <rect x="0" y="0" width="220" height="300" fill="#0c0808"/>
+      
+    <g opacity="1.0" transform="rotate(-22 110.0 150.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-66.0" y="24.0" width="352.0" height="21.000000000000004" fill="#7a3417"/>
+        <rect x="-66.0" y="66.0" width="352.0" height="9.0" fill="#c99080" opacity=".7"/>
+        <rect x="-66.0" y="108.0" width="352.0" height="15.0" fill="#4a1a12"/>
+        <rect x="-66.0" y="186.0" width="352.0" height="12.0" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-66.0" y="240.0" width="352.0" height="6.0" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+      <polygon points="122,0 190,0 92,300 24,300" fill="#dc2430"/>
+      <g transform="rotate(20 110 110)">
+        <text x="40" y="96" font-family="'Golos Text', sans-serif" font-weight="800" font-size="38" fill="#fff">twin</text>
+        <text x="80" y="128" font-family="'Golos Text', sans-serif" font-weight="800" font-size="38" fill="#fff">coffee</text>
+      </g>
+      <text x="20" y="190" font-family="'Oswald', sans-serif" font-weight="500" font-size="13" fill="#fff" letter-spacing=".04em">РУАНДА</text>
+      <text x="20" y="214" font-family="'Oswald', sans-serif" font-weight="700" font-size="22" fill="#fff">КИЛИМБИ</text>
+      <text x="20" y="232" font-family="'Golos Text', sans-serif" font-size="9" fill="#fff" opacity=".9">персик / кокос / ликёрная конфета</text>
+      <text x="202" y="252" font-family="'Golos Text', sans-serif" font-size="8" fill="#fff" opacity=".7" text-anchor="end">бурбон · 12 г</text>
+      <rect x="0" y="264" width="220" height="36" fill="url(#tc-chevron)"/>
+      <line x1="0" y1="30" x2="220" y2="30" stroke="#fff" stroke-opacity=".45" stroke-dasharray="3 4"/>
+    </g>
+  </g>
+  
+  <g transform="translate(620 140) rotate(-2 110.0 150.0)">
+    <ellipse cx="110.0" cy="326" rx="105.6" ry="10" fill="#000" opacity=".6" filter="url(#tc-soft)"/>
+    <clipPath id="tc-sachet-3"><path d="M0 6 L0 6 L5.0 0 L10.0 6 L15.0 0 L20.0 6 L25.0 0 L30.0 6 L35.0 0 L40.0 6 L45.0 0 L50.0 6 L55.0 0 L60.0 6 L65.0 0 L70.0 6 L75.0 0 L80.0 6 L85.0 0 L90.0 6 L95.0 0 L100.0 6 L105.0 0 L110.0 6 L115.0 0 L120.0 6 L125.0 0 L130.0 6 L135.0 0 L140.0 6 L145.0 0 L150.0 6 L155.0 0 L160.0 6 L165.0 0 L170.0 6 L175.0 0 L180.0 6 L185.0 0 L190.0 6 L195.0 0 L200.0 6 L205.0 0 L210.0 6 L215.0 0 L220.0 6 L220 300 L0 300 Z"/></clipPath>
+    <g clip-path="url(#tc-sachet-3)">
+      
+      <rect x="0" y="0" width="220" height="300" fill="#0c0808"/>
+      
+    <g opacity="1.0" transform="rotate(-22 110.0 150.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-66.0" y="24.0" width="352.0" height="21.000000000000004" fill="#7a3417"/>
+        <rect x="-66.0" y="66.0" width="352.0" height="9.0" fill="#c99080" opacity=".7"/>
+        <rect x="-66.0" y="108.0" width="352.0" height="15.0" fill="#4a1a12"/>
+        <rect x="-66.0" y="186.0" width="352.0" height="12.0" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-66.0" y="240.0" width="352.0" height="6.0" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+      <polygon points="122,0 190,0 92,300 24,300" fill="#dc2430"/>
+      <g transform="rotate(20 110 110)">
+        <text x="40" y="96" font-family="'Golos Text', sans-serif" font-weight="800" font-size="38" fill="#fff">twin</text>
+        <text x="80" y="128" font-family="'Golos Text', sans-serif" font-weight="800" font-size="38" fill="#fff">coffee</text>
+      </g>
+      <text x="20" y="190" font-family="'Oswald', sans-serif" font-weight="500" font-size="13" fill="#fff" letter-spacing=".04em">КОСТА-РИКА</text>
+      <text x="20" y="214" font-family="'Oswald', sans-serif" font-weight="700" font-size="22" fill="#fff">ЭСТЕБАН ЗАМОРА</text>
+      <text x="20" y="232" font-family="'Golos Text', sans-serif" font-size="9" fill="#fff" opacity=".9">брусника / грейпфрут / фундук / ром</text>
+      <text x="202" y="252" font-family="'Golos Text', sans-serif" font-size="8" fill="#fff" opacity=".7" text-anchor="end">катуаи · 12 г</text>
+      <rect x="0" y="264" width="220" height="36" fill="url(#tc-chevron)"/>
+      <line x1="0" y1="30" x2="220" y2="30" stroke="#fff" stroke-opacity=".45" stroke-dasharray="3 4"/>
+    </g>
+  </g>
+  
+  <g transform="translate(900 120) rotate(5 110.0 150.0)">
+    <ellipse cx="110.0" cy="326" rx="105.6" ry="10" fill="#000" opacity=".6" filter="url(#tc-soft)"/>
+    <clipPath id="tc-sachet-4"><path d="M0 6 L0 6 L5.0 0 L10.0 6 L15.0 0 L20.0 6 L25.0 0 L30.0 6 L35.0 0 L40.0 6 L45.0 0 L50.0 6 L55.0 0 L60.0 6 L65.0 0 L70.0 6 L75.0 0 L80.0 6 L85.0 0 L90.0 6 L95.0 0 L100.0 6 L105.0 0 L110.0 6 L115.0 0 L120.0 6 L125.0 0 L130.0 6 L135.0 0 L140.0 6 L145.0 0 L150.0 6 L155.0 0 L160.0 6 L165.0 0 L170.0 6 L175.0 0 L180.0 6 L185.0 0 L190.0 6 L195.0 0 L200.0 6 L205.0 0 L210.0 6 L215.0 0 L220.0 6 L220 300 L0 300 Z"/></clipPath>
+    <g clip-path="url(#tc-sachet-4)">
+      
+      <rect x="0" y="0" width="220" height="300" fill="#0c0808"/>
+      
+    <g opacity="0.55" transform="rotate(-22 110.0 150.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-66.0" y="24.0" width="352.0" height="21.000000000000004" fill="#7a3417"/>
+        <rect x="-66.0" y="66.0" width="352.0" height="9.0" fill="#c99080" opacity=".7"/>
+        <rect x="-66.0" y="108.0" width="352.0" height="15.0" fill="#4a1a12"/>
+        <rect x="-66.0" y="186.0" width="352.0" height="12.0" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-66.0" y="240.0" width="352.0" height="6.0" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+      <g transform="translate(220 0) scale(-1 1)">
+        <text x="24" y="86" font-family="'Golos Text', sans-serif" font-weight="800" font-size="36" fill="#fff">twin</text>
+        <text x="58" y="118" font-family="'Golos Text', sans-serif" font-weight="800" font-size="36" fill="#fff">coffee</text>
+      </g>
+      <text x="22" y="160" font-family="'Oswald', sans-serif" font-weight="600" font-size="13" fill="#dc2430" letter-spacing=".06em">КАК ЗАВАРИТЬ</text>
+      <g font-family="'Golos Text', sans-serif" font-size="10" fill="#e9e3dc">
+        <text x="22" y="180">1. Оторвите край по пунктиру</text>
+        <text x="22" y="196">2. Повесьте фильтр на чашку</text>
+        <text x="22" y="212">3. Лейте 180 мл воды, 92°</text>
+        <text x="22" y="228">4. Не оборачивайтесь</text>
+      </g>
+      <text x="22" y="252" font-family="'Golos Text', sans-serif" font-size="8" fill="#8d827c">логотип читается только в зеркале</text>
+      <rect x="0" y="264" width="220" height="36" fill="url(#tc-chevron)"/>
+      <line x1="0" y1="30" x2="220" y2="30" stroke="#fff" stroke-opacity=".45" stroke-dasharray="3 4"/>
+    </g>
+  </g>
+  <text x="1010" y="100" font-family="'Golos Text', sans-serif" font-size="13" fill="#9b8f88" text-anchor="middle">оборот</text>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">01</span>
+                    <span class="tc-frame__carrier">Упаковка</span>
+                </div>
+                <h3 class="tc-frame__title">Дрип-пакеты «Три вкуса — две реальности»</h3>
+                <p>Три вкуса из буклета получают свои пакеты. Лицевая сторона повторяет плакат: красная диагональ, размытые полосы движения и логотип, наклонённый вдоль неё. Внизу у каждого пакета узкая полоса зигзагов, по которой дрипы узнаются в любом ряду. Оборот — «другая реальность»: логотип там напечатан зеркально, а инструкция заканчивается пунктом «не оборачивайтесь».</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Красная комната: чёрно-белый зигзаг пола, обратная речь обитателей Вигвама, двойники.</dd></div>
+                    <div><dt>Производство</dt><dd>Флоу-пак 9,5 × 11,5 см (размер уже задан в буклете), матовая плёнка, красный — Pantone 185 C. Лицо в двух вариантах, оборот один на все вкусы.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame tc-frame--wide">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 1200 600" role="img" aria-label="Мокап: закрытая коробка с рукавом и открытая коробка с красной комнатой внутри">
+  <rect width="1200" height="600" fill="#050404"/>
+  <!-- закрытая коробка -->
+  <ellipse cx="330" cy="530" rx="250" ry="18" fill="#000" filter="url(#tc-soft)"/>
+  <polygon points="110,230 470,230 540,170 180,170" fill="#1b1112"/>
+  <polygon points="470,230 540,170 540,460 470,520" fill="#070404"/>
+  <clipPath id="tc-boxfront"><rect x="110" y="230" width="360" height="290"/></clipPath>
+  <g clip-path="url(#tc-boxfront)">
+    <rect x="110" y="230" width="360" height="290" fill="#0c0808"/>
+    <g transform="translate(110 230)">
+    <g opacity="0.8" transform="rotate(-22 180.0 145.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-108.0" y="23.2" width="576.0" height="20.3" fill="#7a3417"/>
+        <rect x="-108.0" y="63.8" width="576.0" height="8.7" fill="#c99080" opacity=".7"/>
+        <rect x="-108.0" y="104.39999999999999" width="576.0" height="14.5" fill="#4a1a12"/>
+        <rect x="-108.0" y="179.8" width="576.0" height="11.6" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-108.0" y="232.0" width="576.0" height="5.8" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g></g>
+    <polygon points="330,230 400,230 240,520 170,520" fill="#dc2430"/>
+  </g>
+  <g transform="rotate(20 290 300)">
+    <text x="190" y="300" font-family="'Golos Text', sans-serif" font-weight="800" font-size="50" fill="#fff">twin</text>
+    <text x="244" y="344" font-family="'Golos Text', sans-serif" font-weight="800" font-size="50" fill="#fff">coffee</text>
+  </g>
+  <!-- рукав -->
+  <polygon points="110,400 470,400 470,450 110,450" fill="#f2eee8"/>
+  <polygon points="470,400 540,340 540,390 470,450" fill="#bdb6ae"/>
+  <text x="128" y="431" font-family="'Oswald', sans-serif" font-weight="600" font-size="17" fill="#111" letter-spacing=".05em">ЧЁРНЫЙ ВИГВАМ · 10 ДРИП-ПАКЕТОВ</text>
+  <!-- открытая коробка: сцена -->
+  <rect x="660" y="60" width="450" height="240" fill="url(#tc-curtain)"/>
+  <rect x="660" y="60" width="450" height="240" fill="#000" opacity=".12"/>
+  <rect x="660" y="60" width="450" height="240" fill="none" stroke="#111" stroke-width="10"/>
+  <polygon points="660,300 1110,300 1170,500 600,500" fill="url(#tc-chevron-big)"/>
+  <polygon points="660,300 1110,300 1170,500 600,500" fill="#000" opacity=".25"/>
+  <g transform="translate(700 330) rotate(-3 35.0 50.0)">
+      <rect width="70" height="100" fill="#0c0808" stroke="#2a1d1d"/>
+      <polygon points="38.5,0 60.199999999999996,0 29.4,100 7.7,100" fill="#dc2430"/>
+      <text x="12.6" y="42.0" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">twin</text>
+      <text x="23.8" y="56.00000000000001" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">coffee</text>
+      <rect y="86.0" width="70" height="14.000000000000002" fill="url(#tc-chevron)"/>
+    </g>
+  <g transform="translate(790 318) rotate(0 35.0 50.0)">
+      <rect width="70" height="100" fill="#0c0808" stroke="#2a1d1d"/>
+      <polygon points="38.5,0 60.199999999999996,0 29.4,100 7.7,100" fill="#dc2430"/>
+      <text x="12.6" y="42.0" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">twin</text>
+      <text x="23.8" y="56.00000000000001" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">coffee</text>
+      <rect y="86.0" width="70" height="14.000000000000002" fill="url(#tc-chevron)"/>
+    </g>
+  <g transform="translate(880 326) rotate(2 35.0 50.0)">
+      <rect width="70" height="100" fill="#0c0808" stroke="#2a1d1d"/>
+      <polygon points="38.5,0 60.199999999999996,0 29.4,100 7.7,100" fill="#dc2430"/>
+      <text x="12.6" y="42.0" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">twin</text>
+      <text x="23.8" y="56.00000000000001" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">coffee</text>
+      <rect y="86.0" width="70" height="14.000000000000002" fill="url(#tc-chevron)"/>
+    </g>
+  <g transform="translate(970 318) rotate(0 35.0 50.0)">
+      <rect width="70" height="100" fill="#0c0808" stroke="#2a1d1d"/>
+      <polygon points="38.5,0 60.199999999999996,0 29.4,100 7.7,100" fill="#dc2430"/>
+      <text x="12.6" y="42.0" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">twin</text>
+      <text x="23.8" y="56.00000000000001" font-family="'Golos Text', sans-serif" font-weight="800" font-size="11.9" fill="#fff">coffee</text>
+      <rect y="86.0" width="70" height="14.000000000000002" fill="url(#tc-chevron)"/>
+    </g>
+  <!-- буклет-гармошка -->
+  <g transform="translate(1040 330)">
+    <polygon points="0,0 30,8 30,108 0,100" fill="#dc2430"/>
+    <polygon points="30,8 60,0 60,100 30,108" fill="#1a1012"/>
+    <polygon points="60,0 90,8 90,108 60,100" fill="#c41d28"/>
+  </g>
+  <rect x="600" y="470" width="570" height="70" fill="#0c0808"/>
+  <rect x="600" y="470" width="570" height="70" fill="none" stroke="#1d1414"/>
+  <text x="620" y="515" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#fff" letter-spacing=".08em">ОДИН НАПИТОК · ДВЕ РЕАЛЬНОСТИ</text>
+  <text x="1150" y="515" font-family="'Golos Text', sans-serif" font-weight="800" font-size="22" fill="#dc2430" text-anchor="end">twin coffee</text>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">02</span>
+                    <span class="tc-frame__carrier">Упаковка</span>
+                </div>
+                <h3 class="tc-frame__title">Коробка «Чёрный вигвам»</h3>
+                <p>Снаружи чёрная коробка на 10 дрипов со светлым рукавом. Когда снимаешь рукав и поднимаешь крышку, внутри оказывается сцена: на крышке напечатан красный занавес, на дне зигзаг пола, а пакеты стоят в ряд, как гости Вигвама. Буклет-гармошка того же формата вкладывается сбоку, так буклет и упаковка становятся одной системой.</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Красный занавес и пол Чёрного вигвама; распаковка как переход в другое измерение.</dd></div>
+                    <div><dt>Производство</dt><dd>Коробка-крышка из чёрного дизайнерского картона, печать внутри CMYK, рукав — белый картон с одной краской.</dd></div>
+                </dl>
+            </div>
+        </article>
+            </div>
+        </section>
+
+        <section class="tc-section">
+            <p class="tc-section__title">Что ещё сделать для кофейни</p>
+            <p class="tc-section__intro">Восемь носителей, от самых нужных в работе кофейни до спецпроектов. Мокапы схематичные: в них показана идея и композиция, а финальная графика собирается из фотографий серии.</p>
+            <div class="tc-grid">
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: папка-досье с полароидом и кассетой">
+  <rect width="800" height="520" fill="#0a0707"/>
+  <rect x="0" y="0" width="800" height="520" fill="url(#tc-curtain)" opacity=".18"/>
+  <ellipse cx="320" cy="470" rx="250" ry="16" fill="#000" filter="url(#tc-soft)"/>
+  <rect x="80" y="70" width="140" height="34" rx="4" fill="#dc2430"/>
+  <text x="96" y="93" font-family="'Oswald', sans-serif" font-weight="600" font-size="14" fill="#fff" letter-spacing=".06em">ДЕЛО № 0224</text>
+  <g transform="translate(330 52) rotate(-6 40.0 56.0)">
+      <rect width="80" height="112" fill="#0c0808" stroke="#2a1d1d"/>
+      <polygon points="44.0,0 68.8,0 33.6,112 8.8,112" fill="#dc2430"/>
+      <text x="14.399999999999999" y="47.04" font-family="'Golos Text', sans-serif" font-weight="800" font-size="13.600000000000001" fill="#fff">twin</text>
+      <text x="27.200000000000003" y="62.720000000000006" font-family="'Golos Text', sans-serif" font-weight="800" font-size="13.600000000000001" fill="#fff">coffee</text>
+      <rect y="96.32" width="80" height="15.680000000000001" fill="url(#tc-chevron)"/>
+    </g>
+  <g transform="translate(410 48) rotate(4 40.0 56.0)">
+      <rect width="80" height="112" fill="#0c0808" stroke="#2a1d1d"/>
+      <polygon points="44.0,0 68.8,0 33.6,112 8.8,112" fill="#dc2430"/>
+      <text x="14.399999999999999" y="47.04" font-family="'Golos Text', sans-serif" font-weight="800" font-size="13.600000000000001" fill="#fff">twin</text>
+      <text x="27.200000000000003" y="62.720000000000006" font-family="'Golos Text', sans-serif" font-weight="800" font-size="13.600000000000001" fill="#fff">coffee</text>
+      <rect y="96.32" width="80" height="15.680000000000001" fill="url(#tc-chevron)"/>
+    </g>
+  <rect x="80" y="96" width="460" height="364" fill="#151011"/>
+  <rect x="80" y="96" width="460" height="364" fill="none" stroke="#2a1f1f"/>
+  <text x="104" y="140" font-family="'Oswald', sans-serif" font-weight="700" font-size="30" fill="#fff">ДОРОГАЯ ДИАНА,</text>
+  <text x="104" y="168" font-family="'Golos Text', sans-serif" font-size="14" fill="#c9bdb6">11:30 утра. Вошёл в кофейню.</text>
+  <text x="104" y="188" font-family="'Golos Text', sans-serif" font-size="14" fill="#c9bdb6">Кофе чертовски хорош.</text>
+  <g transform="rotate(-12 200 380)">
+    <rect x="110" y="330" width="230" height="64" fill="none" stroke="#dc2430" stroke-width="4"/>
+    <text x="225" y="372" font-family="'Oswald', sans-serif" font-weight="700" font-size="24" fill="#dc2430" text-anchor="middle" letter-spacing=".06em">ЧЕРТОВСКИ ХОРОШ</text>
+  </g>
+  <!-- полароид -->
+  <g transform="rotate(8 430 240)">
+    <rect x="350" y="150" width="170" height="200" fill="#f4f1ea"/>
+    <rect x="362" y="162" width="146" height="140" fill="#120c0c"/>
+    <g filter="url(#tc-glow)">
+      <ellipse cx="435" cy="250" rx="52" ry="14" fill="url(#tc-stripes)"/>
+      <path d="M405 210 L465 210 L458 248 L412 248 Z" fill="url(#tc-stripes)"/>
+      <ellipse cx="435" cy="210" rx="30" ry="7" fill="#1a0d06"/>
+    </g>
+    <text x="370" y="332" font-family="'Caveat', cursive" font-size="20" fill="#333">улика № 1</text>
+  </g>
+  <!-- кассета -->
+  <g transform="rotate(-5 620 360)">
+    <rect x="480" y="290" width="260" height="160" rx="10" fill="#1d1617" stroke="#3a2c2c"/>
+    <rect x="500" y="306" width="220" height="52" rx="3" fill="#dc2430"/>
+    <text x="512" y="330" font-family="'Oswald', sans-serif" font-weight="600" font-size="15" fill="#fff">ДИАНА · ЗАПИСЬ № 3</text>
+    <text x="512" y="349" font-family="'Golos Text', sans-serif" font-size="11" fill="#fff" opacity=".85">плейлист к завтраку по QR</text>
+    <rect x="530" y="372" width="160" height="48" rx="24" fill="#0b0808"/>
+    <circle cx="560" cy="396" r="16" fill="#f2eee8"/><circle cx="560" cy="396" r="6" fill="#0b0808"/>
+    <circle cx="660" cy="396" r="16" fill="#f2eee8"/><circle cx="660" cy="396" r="6" fill="#0b0808"/>
+  </g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">03</span>
+                    <span class="tc-frame__carrier">Упаковка · спецпроект</span>
+                </div>
+                <h3 class="tc-frame__title">Подарочный набор «Дорогая Диана»</h3>
+                <p>Дрипы в папке-досье с номером дела. Внутри полароид-«улика» с размытой чашкой из фотосерии и картонная кассета с QR на плейлист к завтраку. Текст написан как диктофонная запись агента: время, место, кофе.</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Агент Купер и его записи для Дианы; «чертовски хороший кофе».</dd></div>
+                    <div><dt>Производство</dt><dd>Папка из чёрного картона с вырубной лапкой, штамп одной краской, полароид печатается цифрой.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: два стакана-двойника с отражением">
+  <rect width="800" height="520" fill="#060505"/>
+  
+    <g opacity="0.3" transform="rotate(-22 400.0 260.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-240.0" y="41.6" width="1280.0" height="36.400000000000006" fill="#7a3417"/>
+        <rect x="-240.0" y="114.4" width="1280.0" height="15.6" fill="#c99080" opacity=".7"/>
+        <rect x="-240.0" y="187.2" width="1280.0" height="26.0" fill="#4a1a12"/>
+        <rect x="-240.0" y="322.4" width="1280.0" height="20.8" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-240.0" y="416.0" width="1280.0" height="10.4" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+  <rect x="0" y="440" width="800" height="80" fill="url(#tc-chevron-big)"/>
+  <rect x="0" y="440" width="800" height="80" fill="#000" opacity=".45"/>
+  <g>
+    <path d="M150 130 L350 130 L326 440 L174 440 Z" fill="url(#tc-stripes)"/>
+    <path d="M158 236 L342 236 L335 330 L165 330 Z" fill="#dc2430"/>
+    <text x="202" y="282" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#fff">twin</text>
+      <text x="222" y="306" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#fff">coffee</text>
+    <rect x="140" y="108" width="220" height="26" rx="8" fill="#f6f3ee"/>
+    <rect x="160" y="96" width="180" height="16" rx="6" fill="#f6f3ee"/></g>
+  <g>
+    <path d="M450 130 L650 130 L626 440 L474 440 Z" fill="url(#tc-stripes-dark)"/>
+    <path d="M458 236 L642 236 L635 330 L465 330 Z" fill="#f6f3ee"/>
+    <g transform="translate(1100 0) scale(-1 1)"><text x="502" y="282" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#dc2430">twin</text>
+      <text x="522" y="306" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#dc2430">coffee</text></g>
+    <rect x="440" y="108" width="220" height="26" rx="8" fill="#dc2430"/>
+    <rect x="460" y="96" width="180" height="16" rx="6" fill="#dc2430"/></g>
+  <line x1="400" y1="70" x2="400" y2="440" stroke="#fff" stroke-opacity=".35" stroke-dasharray="4 6"/>
+  <text x="250" y="60" font-family="'Golos Text', sans-serif" font-size="13" fill="#9b8f88" text-anchor="middle">здесь</text>
+  <text x="550" y="60" font-family="'Golos Text', sans-serif" font-size="13" fill="#9b8f88" text-anchor="middle">там</text>
+  <g mask="url(#tc-reflect)" transform="translate(0 880) scale(1 -1)" opacity=".5">
+    <g>
+    <path d="M150 130 L350 130 L326 440 L174 440 Z" fill="url(#tc-stripes)"/>
+    <path d="M158 236 L342 236 L335 330 L165 330 Z" fill="#dc2430"/>
+    <text x="202" y="282" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#fff">twin</text>
+      <text x="222" y="306" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#fff">coffee</text>
+    <rect x="140" y="108" width="220" height="26" rx="8" fill="#f6f3ee"/>
+    <rect x="160" y="96" width="180" height="16" rx="6" fill="#f6f3ee"/></g><g>
+    <path d="M450 130 L650 130 L626 440 L474 440 Z" fill="url(#tc-stripes-dark)"/>
+    <path d="M458 236 L642 236 L635 330 L465 330 Z" fill="#f6f3ee"/>
+    <g transform="translate(1100 0) scale(-1 1)"><text x="502" y="282" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#dc2430">twin</text>
+      <text x="522" y="306" font-family="'Golos Text', sans-serif" font-weight="800" font-size="24" fill="#dc2430">coffee</text></g>
+    <rect x="440" y="108" width="220" height="26" rx="8" fill="#dc2430"/>
+    <rect x="460" y="96" width="180" height="16" rx="6" fill="#dc2430"/></g>
+  </g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">04</span>
+                    <span class="tc-frame__carrier">Навынос</span>
+                </div>
+                <h3 class="tc-frame__title">Стаканы-двойники</h3>
+                <p>Два стакана. Основной полосатый, как фарфор из съёмки, с красным рукавом. Двойник инвертирован: чёрный с красными полосами и зеркальным логотипом. Если заказать два напитка, получится пара «здесь и там».</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Доппельгангеры, полосатые чашки из самой фотосерии.</dd></div>
+                    <div><dt>Производство</dt><dd>Бумажные стаканы 250 и 350 мл, рукав-манжета, крышка в цвет. Полосы печатаются одной краской.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: наборная доска-меню на фоне красного занавеса">
+  <rect width="800" height="520" fill="url(#tc-curtain)"/>
+  <rect width="800" height="520" fill="#000" opacity=".2"/>
+  <rect x="146" y="60" width="508" height="400" fill="#2b1a12"/>
+  <rect x="160" y="74" width="480" height="372" fill="#141010"/>
+  <line x1="170" x2="630" y1="96" y2="96" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="108" y2="108" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="120" y2="120" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="132" y2="132" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="144" y2="144" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="156" y2="156" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="168" y2="168" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="180" y2="180" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="192" y2="192" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="204" y2="204" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="216" y2="216" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="228" y2="228" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="240" y2="240" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="252" y2="252" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="264" y2="264" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="276" y2="276" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="288" y2="288" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="300" y2="300" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="312" y2="312" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="324" y2="324" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="336" y2="336" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="348" y2="348" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="360" y2="360" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="372" y2="372" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="384" y2="384" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="396" y2="396" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="408" y2="408" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="420" y2="420" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="432" y2="432" stroke="#221a1a" stroke-width="1"/>
+<line x1="170" x2="630" y1="444" y2="444" stroke="#221a1a" stroke-width="1"/>
+  <text x="200" y="128" font-family="'Golos Text', sans-serif" font-weight="800" font-size="30" fill="#dc2430">twin coffee</text>
+  <text x="600" y="128" font-family="'Oswald', sans-serif" font-weight="500" font-size="16" fill="#f2eee8" text-anchor="end" letter-spacing=".1em">МЕНЮ</text>
+  <line x1="200" x2="600" y1="146" y2="146" stroke="#f2eee8" stroke-opacity=".4"/>
+  <text x="200" y="190" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" letter-spacing=".08em">ЧЕРТОВСКИ ХОРОШИЙ ФИЛЬТР</text><text x="600" y="190" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" text-anchor="end">290</text>
+<text x="200" y="224" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" letter-spacing=".08em">ВИШНЁВЫЙ ПИРОГ</text><text x="600" y="224" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" text-anchor="end">340</text>
+<text x="200" y="258" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" letter-spacing=".08em">ПОНЧИКИ ДЛЯ ШЕРИФА</text><text x="600" y="258" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" text-anchor="end">180</text>
+<text x="200" y="292" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" letter-spacing=".08em">ДРИП «ЛА КАБАНА»</text><text x="600" y="292" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" text-anchor="end">220</text>
+<text x="200" y="326" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" letter-spacing=".08em">ДРИП «КИЛИМБИ»</text><text x="600" y="326" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" text-anchor="end">220</text>
+<text x="200" y="360" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" letter-spacing=".08em">ДРИП «ЭСТЕБАН ЗАМОРА»</text><text x="600" y="360" font-family="'Oswald', sans-serif" font-weight="500" font-size="20" fill="#f2eee8" text-anchor="end">240</text>
+  <g transform="translate(800 0) scale(-1 1)">
+    <text x="400" y="422" font-family="'Oswald', sans-serif" font-weight="600" font-size="20" fill="#dc2430" text-anchor="middle" letter-spacing=".08em">СОВЫ НЕ ТО, ЧЕМ КАЖУТСЯ</text>
+  </g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">05</span>
+                    <span class="tc-frame__carrier">Интерьер</span>
+                </div>
+                <h3 class="tc-frame__title">Меню на наборной доске</h3>
+                <p>Меню набрано белыми буквами на чёрной доске, как в придорожном дайнере. В нём вишнёвый пирог, «пончики для шерифа» и дрипы из буклета. Последняя строка выложена задом наперёд красными буквами, её нужно прочитать в зеркале у кассы.</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Закусочная «Double R», пончики полицейского участка, совы.</dd></div>
+                    <div><dt>Производство</dt><dd>Готовая letterboard-доска 60 × 45 см и фон-занавес на стене. Дополнительно — печатная версия А4.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: вывеска в духе дорожного знака на фоне пихт">
+  <rect width="800" height="520" fill="url(#tc-night)"/>
+  <g opacity=".9">
+    <path d="M60 214.0 L104.80000000000001 310.0 L85.6 310.0 L130.4 390.0 L101.6 390.0 L152.8 470 L-32.80000000000001 470 L18.4 390.0 L-10.400000000000006 390.0 L34.4 310.0 L15.199999999999996 310.0 Z" fill="#0d1511"/><path d="M170 278.0 L203.6 350.0 L189.2 350.0 L222.8 410.0 L201.2 410.0 L239.6 470 L100.4 470 L138.8 410.0 L117.2 410.0 L150.8 350.0 L136.4 350.0 Z" fill="#111a15"/><path d="M690 198.0 L737.6 300.0 L717.2 300.0 L764.8 385.0 L734.2 385.0 L788.6 470 L591.4 470 L645.8 385.0 L615.2 385.0 L662.8 300.0 L642.4 300.0 Z" fill="#0d1511"/><path d="M770 294.0 L800.8 360.0 L787.6 360.0 L818.4 415.0 L798.6 415.0 L833.8 470 L706.2 470 L741.4 415.0 L721.6 415.0 L752.4 360.0 L739.2 360.0 Z" fill="#111a15"/>
+    <path d="M600 310.0 L628.0 370.0 L616.0 370.0 L644.0 420.0 L626.0 420.0 L658.0 470 L542.0 470 L574.0 420.0 L556.0 420.0 L584.0 370.0 L572.0 370.0 Z" fill="#0b120e"/><path d="M250 326.0 L275.2 380.0 L264.4 380.0 L289.6 425.0 L273.4 425.0 L302.2 470 L197.8 470 L226.6 425.0 L210.4 425.0 L235.6 380.0 L224.8 380.0 Z" fill="#0b120e"/>
+  </g>
+  <g transform="translate(0 0)" opacity=".35">
+    <g opacity="1" transform="rotate(-22 400.0 260.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-240.0" y="41.6" width="1280.0" height="36.400000000000006" fill="#7a3417"/>
+        <rect x="-240.0" y="114.4" width="1280.0" height="15.6" fill="#c99080" opacity=".7"/>
+        <rect x="-240.0" y="187.2" width="1280.0" height="26.0" fill="#4a1a12"/>
+        <rect x="-240.0" y="322.4" width="1280.0" height="20.8" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-240.0" y="416.0" width="1280.0" height="10.4" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g></g>
+  <rect x="0" y="460" width="800" height="60" fill="#070606"/>
+  <rect x="236" y="350" width="16" height="130" fill="#3a2418"/>
+  <rect x="548" y="350" width="16" height="130" fill="#3a2418"/>
+  <rect x="170" y="120" width="460" height="250" rx="6" fill="#f2eee8"/>
+  <rect x="182" y="132" width="436" height="226" rx="3" fill="#0c0808"/>
+  <clipPath id="tc-signclip"><rect x="182" y="132" width="436" height="226"/></clipPath>
+  <g clip-path="url(#tc-signclip)"><polygon points="470,132 540,132 420,358 350,358" fill="#dc2430"/></g>
+  <text x="400" y="176" font-family="'Oswald', sans-serif" font-weight="500" font-size="18" fill="#f2eee8" text-anchor="middle" letter-spacing=".14em">ДОБРО ПОЖАЛОВАТЬ В</text>
+  <text x="400" y="262" font-family="'Golos Text', sans-serif" font-weight="800" font-size="74" fill="#fff" text-anchor="middle">twin coffee</text>
+  <text x="400" y="318" font-family="'Oswald', sans-serif" font-weight="500" font-size="18" fill="#f2eee8" text-anchor="middle" letter-spacing=".1em">НАСЕЛЕНИЕ: 51 201 ЧАШКА</text>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">06</span>
+                    <span class="tc-frame__carrier">Навигация</span>
+                </div>
+                <h3 class="tc-frame__title">Вывеска-указатель</h3>
+                <p>Уличный штендер или вывеска у входа в форме дорожного знака из заставки сериала. Вместо численности города на нём счётчик чашек. Фоном служат силуэты пихт и те же размытые полосы.</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Знак «Welcome to Twin Peaks · Population 51,201» и пихты Дугласа.</dd></div>
+                    <div><dt>Производство</dt><dd>Композит или фанера 120 × 65 см, плёнка с печатью, по краю белая рамка. Число на табличке сменное.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: шоппер с совиными глазами и значки">
+  <rect width="800" height="520" fill="#0a0707"/>
+  <rect x="0" y="0" width="800" height="520" fill="url(#tc-curtain)" opacity=".15"/>
+  <ellipse cx="330" cy="485" rx="180" ry="14" fill="#000" filter="url(#tc-soft)"/>
+  <path d="M260 180 C260 60, 400 60, 400 180" fill="none" stroke="#e4ddd2" stroke-width="12"/>
+  <rect x="190" y="170" width="280" height="310" fill="#efe9df"/>
+  <rect x="190" y="430" width="280" height="50" fill="url(#tc-chevron)"/>
+  <circle cx="285" cy="270" r="40" fill="none" stroke="#dc2430" stroke-width="10"/>
+  <circle cx="375" cy="270" r="40" fill="none" stroke="#dc2430" stroke-width="10"/>
+  <circle cx="285" cy="270" r="14" fill="#111"/>
+  <circle cx="375" cy="270" r="14" fill="#111"/>
+  <path d="M318 312 L330 330 L342 312 Z" fill="#111"/>
+  <text x="330" y="372" font-family="'Oswald', sans-serif" font-weight="700" font-size="24" fill="#111" text-anchor="middle">СОВЫ — НЕ ТО,</text>
+  <text x="330" y="400" font-family="'Oswald', sans-serif" font-weight="700" font-size="24" fill="#111" text-anchor="middle">ЧЕМ КАЖУТСЯ</text>
+  <text x="330" y="420" font-family="'Golos Text', sans-serif" font-weight="800" font-size="12" fill="#dc2430" text-anchor="middle">twin coffee</text>
+  <!-- значки -->
+  <g transform="translate(590 150)">
+    <circle r="52" fill="#dc2430"/>
+    <circle cx="-18" cy="-4" r="13" fill="#fff"/><circle cx="18" cy="-4" r="13" fill="#fff"/>
+    <circle cx="-18" cy="-4" r="5" fill="#111"/><circle cx="18" cy="-4" r="5" fill="#111"/>
+    <path d="M-6 14 L0 24 L6 14 Z" fill="#111"/>
+  </g>
+  <g transform="translate(660 290)">
+    <circle r="48" fill="url(#tc-stripes)"/>
+    <circle r="48" fill="none" stroke="#111" stroke-width="3"/>
+    <circle r="22" fill="#1a0d06"/>
+  </g>
+  <g transform="translate(570 400)">
+    <circle r="46" fill="#111"/>
+    <circle r="26" fill="none" stroke="#c9b48a" stroke-width="7"/>
+    <ellipse cx="0" cy="-26" rx="12" ry="9" fill="#3fa7a0"/>
+  </g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">07</span>
+                    <span class="tc-frame__carrier">Мерч</span>
+                </div>
+                <h3 class="tc-frame__title">Мерч: шоппер и значки</h3>
+                <p>Светлый шоппер с совиными глазами-кольцами и фразой «совы — не то, чем кажутся». К нему набор из трёх значков: красная сова, полосатая чашка сверху и кольцо с бирюзовым камнем, как на руках в фотосерии.</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Совы, нефритовое кольцо Оуэнса, полосатая чашка.</dd></div>
+                    <div><dt>Производство</dt><dd>Хлопковый шоппер, шелкография в две краски, полоса зигзага по низу. Значки — эмаль, ⌀ 32 мм.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: карта постоянного гостя, лицо и оборот">
+  <rect width="800" height="520" fill="#0a0707"/>
+  
+    <g opacity="0.25" transform="rotate(-22 400.0 260.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-240.0" y="41.6" width="1280.0" height="36.400000000000006" fill="#7a3417"/>
+        <rect x="-240.0" y="114.4" width="1280.0" height="15.6" fill="#c99080" opacity=".7"/>
+        <rect x="-240.0" y="187.2" width="1280.0" height="26.0" fill="#4a1a12"/>
+        <rect x="-240.0" y="322.4" width="1280.0" height="20.8" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-240.0" y="416.0" width="1280.0" height="10.4" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g>
+  <g transform="rotate(-8 210 260)">
+    <clipPath id="tc-cardclip"><rect x="40" y="150" width="340" height="214" rx="14"/></clipPath>
+    <g clip-path="url(#tc-cardclip)">
+      <rect x="40" y="150" width="340" height="214" fill="#0c0808"/>
+      <g transform="translate(40 150)">
+    <g opacity="0.9" transform="rotate(-22 170.0 107.0)">
+      <g filter="url(#tc-blurX)">
+        <rect x="-102.0" y="17.12" width="544.0" height="14.980000000000002" fill="#7a3417"/>
+        <rect x="-102.0" y="47.08" width="544.0" height="6.42" fill="#c99080" opacity=".7"/>
+        <rect x="-102.0" y="77.03999999999999" width="544.0" height="10.700000000000001" fill="#4a1a12"/>
+        <rect x="-102.0" y="132.68" width="544.0" height="8.56" fill="#9a4a2c" opacity=".8"/>
+        <rect x="-102.0" y="171.20000000000002" width="544.0" height="4.28" fill="#e2b3a4" opacity=".5"/>
+      </g>
+    </g></g>
+      <polygon points="230,150 300,150 190,364 120,364" fill="#dc2430"/>
+    </g>
+    <g transform="rotate(20 210 250)">
+      <text x="140" y="252" font-family="'Golos Text', sans-serif" font-weight="800" font-size="40" fill="#fff">twin</text>
+      <text x="184" y="288" font-family="'Golos Text', sans-serif" font-weight="800" font-size="40" fill="#fff">coffee</text>
+    </g>
+    <text x="60" y="346" font-family="'Golos Text', sans-serif" font-size="12" fill="#fff" opacity=".85">карта постоянного гостя</text>
+  </g>
+  <rect x="420" y="190" width="340" height="214" rx="14" fill="#151011" stroke="#2c2121"/>
+  <text x="444" y="236" font-family="'Oswald', sans-serif" font-weight="600" font-size="18" fill="#fff" letter-spacing=".04em">ДЕСЯТАЯ ЧАШКА — ТАМ</text>
+  <text x="444" y="256" font-family="'Golos Text', sans-serif" font-size="11" fill="#a99d97">штампы-совы за каждую чашку</text>
+  <circle cx="468" cy="300" r="20" fill="#dc2430"/>
+        <circle cx="461" cy="298" r="5" fill="#fff"/><circle cx="475" cy="298" r="5" fill="#fff"/>
+        <circle cx="461" cy="298" r="2" fill="#111"/><circle cx="475" cy="298" r="2" fill="#111"/><circle cx="524" cy="300" r="20" fill="#dc2430"/>
+        <circle cx="517" cy="298" r="5" fill="#fff"/><circle cx="531" cy="298" r="5" fill="#fff"/>
+        <circle cx="517" cy="298" r="2" fill="#111"/><circle cx="531" cy="298" r="2" fill="#111"/><circle cx="580" cy="300" r="20" fill="#dc2430"/>
+        <circle cx="573" cy="298" r="5" fill="#fff"/><circle cx="587" cy="298" r="5" fill="#fff"/>
+        <circle cx="573" cy="298" r="2" fill="#111"/><circle cx="587" cy="298" r="2" fill="#111"/><circle cx="636" cy="300" r="20" fill="#dc2430"/>
+        <circle cx="629" cy="298" r="5" fill="#fff"/><circle cx="643" cy="298" r="5" fill="#fff"/>
+        <circle cx="629" cy="298" r="2" fill="#111"/><circle cx="643" cy="298" r="2" fill="#111"/><circle cx="692" cy="300" r="20" fill="#dc2430"/>
+        <circle cx="685" cy="298" r="5" fill="#fff"/><circle cx="699" cy="298" r="5" fill="#fff"/>
+        <circle cx="685" cy="298" r="2" fill="#111"/><circle cx="699" cy="298" r="2" fill="#111"/><circle cx="468" cy="356" r="20" fill="#dc2430"/>
+        <circle cx="461" cy="354" r="5" fill="#fff"/><circle cx="475" cy="354" r="5" fill="#fff"/>
+        <circle cx="461" cy="354" r="2" fill="#111"/><circle cx="475" cy="354" r="2" fill="#111"/><circle cx="524" cy="356" r="20" fill="none" stroke="#5a4f4b" stroke-width="2"/><circle cx="580" cy="356" r="20" fill="none" stroke="#5a4f4b" stroke-width="2"/><circle cx="636" cy="356" r="20" fill="none" stroke="#5a4f4b" stroke-width="2"/><circle cx="692" cy="356" r="20" fill="none" stroke="#dc2430" stroke-width="2" stroke-dasharray="4 4"/>
+        <g transform="translate(1384 0) scale(-1 1)"><text x="692" y="360" font-family="'Oswald', sans-serif" font-size="10" font-weight="600" fill="#dc2430" text-anchor="middle">ДАРОМ</text></g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">08</span>
+                    <span class="tc-frame__carrier">Лояльность</span>
+                </div>
+                <h3 class="tc-frame__title">Карта постоянного гостя</h3>
+                <p>Лицо карты — тот же плакат в миниатюре. На обороте 10 ячеек, за каждую чашку ставится штамп-сова. Десятая ячейка подписана зеркально «даром»: бесплатная чашка ждёт «там».</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Совы, зеркальные надписи Красной комнаты.</dd></div>
+                    <div><dt>Производство</dt><dd>Картон 400 г, 85 × 55 мм, штамп с совой на кассе. Можно сделать и цифровую версию в приложении.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: коробка для пирога и пончиков с окном и наклейкой">
+  <rect width="800" height="520" fill="#dc2430"/>
+  <rect width="800" height="520" fill="#000" opacity=".12"/>
+  <ellipse cx="380" cy="470" rx="260" ry="20" fill="#000" opacity=".5" filter="url(#tc-soft)"/>
+  <polygon points="130,210 560,210 660,140 230,140" fill="#f6f3ee"/>
+  <polygon points="130,210 560,210 660,140 230,140" fill="url(#tc-stripes)" opacity=".9"/>
+  <polygon points="560,210 660,140 660,390 560,460" fill="#0c0808"/>
+  <rect x="130" y="210" width="430" height="250" fill="#0c0808"/>
+  <rect x="160" y="236" width="370" height="150" rx="75" fill="#2a1b17"/>
+  <rect x="160" y="236" width="370" height="150" rx="75" fill="none" stroke="#f6f3ee" stroke-width="3"/>
+  <!-- пирог и пончики в окне -->
+  <path d="M200 340 L320 280 L330 350 Z" fill="#d79a5a"/>
+  <path d="M206 338 L318 286 L322 300 L214 345 Z" fill="#8c1420"/>
+  <circle cx="230" cy="322" r="5" fill="#b0101c"/><circle cx="262" cy="312" r="5" fill="#b0101c"/>
+  <circle cx="400" cy="312" r="44" fill="#3a2015"/><circle cx="400" cy="312" r="14" fill="#2a1b17"/>
+  <circle cx="480" cy="322" r="38" fill="#e8d9c7"/><circle cx="480" cy="322" r="12" fill="#2a1b17"/>
+  <g fill="#dc2430"><rect x="460" y="300" width="6" height="2"/><rect x="490" y="306" width="6" height="2"/><rect x="470" y="340" width="6" height="2"/><rect x="498" y="334" width="5" height="2"/></g>
+  <text x="150" y="430" font-family="'Golos Text', sans-serif" font-weight="800" font-size="28" fill="#fff">twin coffee</text>
+  <text x="540" y="430" font-family="'Oswald', sans-serif" font-weight="500" font-size="14" fill="#f2eee8" text-anchor="end" letter-spacing=".1em">ВИШНЁВЫЙ ПИРОГ · ПОНЧИКИ</text>
+  <!-- наклейка-пломба -->
+  <g transform="translate(560 214) rotate(-14)">
+    <circle r="56" fill="#f2eee8"/>
+    <circle r="48" fill="none" stroke="#dc2430" stroke-width="2"/>
+    <text y="-8" font-family="'Oswald', sans-serif" font-weight="700" font-size="17" fill="#dc2430" text-anchor="middle">ЧЕРТОВСКИ</text>
+    <text y="14" font-family="'Oswald', sans-serif" font-weight="700" font-size="17" fill="#dc2430" text-anchor="middle">ХОРОШ</text>
+    <text y="32" font-family="'Golos Text', sans-serif" font-size="9" fill="#111" text-anchor="middle">вскрыть в 11:30</text>
+  </g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">09</span>
+                    <span class="tc-frame__carrier">Упаковка десертов</span>
+                </div>
+                <h3 class="tc-frame__title">Коробка для пирога и пончиков</h3>
+                <p>Коробка для десертов из фотосерии: чёрные стенки, полосатая крышка и овальное окно, в котором видно пирог и пончики. Крышку закрывает круглая наклейка-пломба «чертовски хорош · вскрыть в 11:30».</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>Вишнёвый пирог и пончики, «damn good coffee… and hot!».</dd></div>
+                    <div><dt>Производство</dt><dd>Самосборная коробка с окном из PET, крышка одной краской, наклейка на крафт-бумаге с вырубкой.</dd></div>
+                </dl>
+            </div>
+        </article>
+        <article class="tc-frame">
+            <div class="tc-frame__mock">
+<svg viewBox="0 0 800 520" role="img" aria-label="Мокап: подставки под чашки и салфетка">
+  <rect width="800" height="520" fill="#0b0808"/>
+  <rect x="80" y="90" width="300" height="300" fill="#f2eee8" transform="rotate(-6 230 240)"/>
+  <g transform="rotate(-6 230 240)">
+    <rect x="80" y="90" width="300" height="300" fill="none" stroke="#d8d2c8"/>
+    <text x="230" y="230" font-family="'Oswald', sans-serif" font-weight="700" font-size="34" fill="#dc2430" text-anchor="middle">ОГОНЬ,</text>
+    <text x="230" y="268" font-family="'Oswald', sans-serif" font-weight="700" font-size="34" fill="#dc2430" text-anchor="middle">ИДИ СО МНОЙ</text>
+    <text x="230" y="300" font-family="'Golos Text', sans-serif" font-size="13" fill="#111" text-anchor="middle">мы обжариваем зерно сами</text>
+    <text x="230" y="370" font-family="'Golos Text', sans-serif" font-weight="800" font-size="16" fill="#111" text-anchor="middle">twin coffee</text>
+  </g>
+  <g transform="translate(520 170)">
+    <circle r="110" fill="url(#tc-chevron-big)"/>
+    <circle r="110" fill="none" stroke="#111" stroke-width="4"/>
+    <circle r="46" fill="#0c0808"/>
+    <text y="7" font-family="'Oswald', sans-serif" font-weight="600" font-size="20" fill="#fff" text-anchor="middle">ЗДЕСЬ</text>
+  </g>
+  <g transform="translate(640 370)">
+    <circle r="100" fill="#dc2430"/>
+    <circle r="42" fill="#0c0808"/>
+    <g transform="rotate(180)"><text y="7" font-family="'Oswald', sans-serif" font-weight="600" font-size="20" fill="#fff" text-anchor="middle">ТАМ</text></g>
+  </g>
+</svg></div>
+            <div class="tc-frame__body">
+                <div class="tc-frame__head">
+                    <span class="tc-frame__num">10</span>
+                    <span class="tc-frame__carrier">Сервировка</span>
+                </div>
+                <h3 class="tc-frame__title">Подставки и салфетки</h3>
+                <p>Двусторонние подставки под чашки: на одной стороне зигзаг пола и «здесь», на другой красный круг и перевёрнутое «там». На салфетке фраза «огонь, иди со мной» как подпись к собственной обжарке кофейни.</p>
+                <dl class="tc-frame__meta">
+                    <div><dt>Отсылка</dt><dd>«Fire walk with me», пол Красной комнаты, мир «здесь» и «там».</dd></div>
+                    <div><dt>Производство</dt><dd>Подставки из пивного картона ⌀ 10 см, салфетки 33 × 33 см с печатью одной краской.</dd></div>
+                </dl>
+            </div>
+        </article>
+            </div>
+        </section>
+
+        <section class="tc-section">
+            <p class="tc-section__title">Графическая система</p>
+            <p class="tc-section__intro">Цвета, шрифты и четыре приёма, из которых собирается любой новый носитель.</p>
+            <div class="tc-system">
+                <div>
+                    <div class="tc-swatches"><div class="tc-swatch" style="background:#dc2430;color:#fff"><span>Красный занавес</span><span>#DC2430</span></div>
+<div class="tc-swatch" style="background:#0c0808;color:#fff"><span>Вигвам</span><span>#0C0808</span></div>
+<div class="tc-swatch" style="background:#7a3417;color:#fff"><span>Кофейная полоса</span><span>#7A3417</span></div>
+<div class="tc-swatch" style="background:#f2eee8;color:#111"><span>Молочный</span><span>#F2EEE8</span></div>
+<div class="tc-swatch" style="background:#3fa7a0;color:#111"><span>Нефрит</span><span>#3FA7A0</span></div></div>
+                </div>
+                <div class="tc-type">
+                    <div class="tc-type__logo">twin<span>coffee</span></div>
+                    <div class="tc-type__cond">Эстебан Замора</div>
+                    <div class="tc-type__note">В макетах: TT Backwards Sans + Golos Text. На этой странице для превью: Oswald и Golos Text.</div>
+                </div>
+                <div class="tc-elements">
+                    <div class="tc-element">
+                        <svg viewBox="0 0 200 130"><rect width="200" height="130" fill="#0c0808"/><polygon points="110,0 160,0 90,130 40,130" fill="#dc2430"/></svg>
+                        <p>Красная диагональ — граница между мирами</p>
+                    </div>
+                    <div class="tc-element">
+                        <svg viewBox="0 0 200 130"><rect width="200" height="130" fill="url(#tc-chevron-big)"/></svg>
+                        <p>Зигзаг пола Красной комнаты</p>
+                    </div>
+                    <div class="tc-element">
+                        <svg viewBox="0 0 200 130"><rect width="200" height="130" fill="url(#tc-stripes)"/></svg>
+                        <p>Полосы фарфора из фотосерии</p>
+                    </div>
+                    <div class="tc-element">
+                        <svg viewBox="0 0 200 130"><rect width="200" height="130" fill="#0c0808"/><g transform="translate(200 0) scale(-1 1)"><text x="100" y="78" font-family="'Golos Text', sans-serif" font-weight="800" font-size="34" fill="#fff" text-anchor="middle">twin</text></g></svg>
+                        <p>Зеркальный текст — голос «того» мира</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tc-section">
+            <p class="tc-section__title">С чего начать</p>
+            <ol class="tc-steps">
+                <li><strong>Дрипы и коробка.</strong> Они продолжают буклет напрямую и уже сами по себе дают законченный кейс об упаковке.</li>
+                <li><strong>Стаканы и карта гостя.</strong> Это самые массовые носители, по ним видно, что система работает каждый день.</li>
+                <li><strong>Меню, вывеска и мерч.</strong> Они собирают атмосферу пространства и хорошо смотрятся в портфолио на фото.</li>
+                <li><strong>«Дорогая Диана».</strong> Спецпроект для финала кейса, его можно показать видеороликом распаковки.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+</body>
+</html>
