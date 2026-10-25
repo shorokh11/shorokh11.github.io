@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 'project1.html',
             title: 'Лого «ЭшДеш»',
-            image: '/images/dash_portfolio/1_Artboard 1 copy 30.png'
+            image: '/images/dash_portfolio/11_ashdash-cover.jpg'
         },
          {
             id: 'project7.html',
