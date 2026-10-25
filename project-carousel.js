@@ -30,16 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Заметки радиозонда',
             image: 'images/book_radiozond/book_5.png'
         },
-        {
+        /* {
             id: 'project8.html',
             title: 'Буклет TwinCoffee',
             image: 'images/twin coffee/twin coffee olozka.png'
-        },
-         {
+        }, */
+         /* {
             id: 'project2.html',
             title: 'FREEкалендарь 2025',
             image: '/images/free_calendar_portfolio/1_Artboard 1 copy 32.png'
-        },
+        }, */
         {
             id: 'project11.html',
             title: 'SHOR шрифт',
@@ -63,18 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 'project5.html',
             title: 'Бумага для упаковки',
-            image: '/images/obertka_portfolio/1_Artboard 1 copy 35.png'
+            image: '/images/obertka_portfolio/11_wrapping-paper-cover.jpg'
         },
        /*  {
             id: 'project6.html',
             title: 'Цифры на 5',
             image: '/images/zifri_na_5_portfolio/1_Artboard 1 copy 34.png'
         }, */
-         {
+         /* {
             id: 'project12.html',
             title: '80-я годовщина Ленинградской школы реставрации',
             image: 'images/infogr Vaganova/infogr vaganova-06.png'
-        },
+        }, */
     ];
     
     // Фильтруем проекты, исключая текущий
