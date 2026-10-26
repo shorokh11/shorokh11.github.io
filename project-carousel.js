@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
          {
             id: 'project7.html',
             title: 'Заметки радиозонда',
-            image: 'images/book_radiozond/book_5.png'
+            image: 'images/book_radiozond/radiozond-cover.jpg'
         },
         /* {
             id: 'project8.html',
